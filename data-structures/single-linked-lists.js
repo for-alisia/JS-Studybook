@@ -1,4 +1,4 @@
-class Node {
+class NodeSL {
   constructor(val) {
     this.val = val;
     this.next = null;
@@ -12,7 +12,7 @@ class SinglyLinkedList {
     this.length = 0;
   }
   push(val) {
-    var newNode = new Node(val);
+    var newNode = new NodeSL(val);
     if (!this.head) {
       this.head = newNode;
       this.tail = this.head;
@@ -51,7 +51,7 @@ class SinglyLinkedList {
     return currentHead;
   }
   unshift(val) {
-    var newNode = new Node(val);
+    var newNode = new NodeSL(val);
     if (!this.head) {
       this.head = newNode;
       this.tail = this.head;
@@ -84,7 +84,7 @@ class SinglyLinkedList {
     if (index === this.length) return !!this.push(val);
     if (index === 0) return !!this.unshift(val);
 
-    var newNode = new Node(val);
+    var newNode = new NodeSL(val);
     var prev = this.get(index - 1);
     var temp = prev.next;
     prev.next = newNode;
@@ -125,6 +125,30 @@ class SinglyLinkedList {
     }
     console.log(arr);
   }
+
+  // [Symbol.iterator]() {
+  //   return {
+  //     current: this.head,
+  //     next() {
+  //       const currentNode = this.current;
+  //       if (this.current) {
+  //         this.current = this.current.next;
+  //         return { done: false, value: currentNode.val };
+  //       } else {
+  //         return { done: true };
+  //       }
+  //     },
+  //   };
+  // }
+
+  *[Symbol.iterator]() {
+    let currentNode = this.head;
+
+    while (currentNode) {
+      yield currentNode.val;
+      currentNode = currentNode.next;
+    }
+  }
 }
 
 var list = new SinglyLinkedList();
@@ -134,3 +158,5 @@ list.push(201);
 list.push(250);
 list.push(350);
 list.push(999);
+
+console.log([...list]);
