@@ -1,3 +1,4 @@
+// @ts-nocheck
 class NodeSL {
   constructor(val) {
     this.val = val;
