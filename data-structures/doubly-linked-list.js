@@ -82,6 +82,85 @@ class DoblyLinkedList {
     return this;
   }
 
+  get(index) {
+    if (index < 0 || index >= this.length) {
+      return null;
+    }
+
+    let currentIdx, currentNode;
+
+    if (index <= this.length / 2) {
+      currentIdx = 0;
+      currentNode = this.head;
+      while (currentIdx !== index) {
+        currentNode = currentNode.next;
+        currentIdx++;
+      }
+    } else {
+      currentIdx = this.length - 1;
+      currentNode = this.tail;
+
+      while (currentIdx !== index) {
+        currentNode = currentNode.prev;
+        currentIdx--;
+      }
+    }
+    return currentNode;
+  }
+
+  set(index, val) {
+    let node = this.get(index);
+
+    if (node !== null) {
+      node.val = val;
+      return true;
+    }
+    return false;
+  }
+
+  insert(val, index) {
+    if (index < 0 || index > this.length) return false;
+    if (index === this.length) {
+      return !!this.push(val);
+    }
+    if (index === 0) {
+      return !!this.unshift(val);
+    }
+
+    let prevNode = this.get(index - 1);
+    let nextNode = prevNode.next;
+    let newNode = new NodeDL(val);
+    prevNode.next = newNode;
+    newNode.prev = prevNode;
+    nextNode.prev = newNode;
+    newNode.next = nextNode;
+
+    this.length++;
+
+    return true;
+  }
+
+  remove(index) {
+    if (index < 0 || index >= this.length) return undefined;
+    if (index === 0) return this.shift();
+
+    if (index === this.length - 1) return this.pop();
+
+    let nodeToDelete = this.get(index);
+    let prevNode = nodeToDelete.prev;
+    let nextNode = nodeToDelete.next;
+
+    prevNode.next = nextNode;
+    nextNode.prev = prevNode;
+
+    nodeToDelete.next = null;
+    nodeToDelete.prev = null;
+
+    this.length--;
+
+    return nodeToDelete;
+  }
+
   // Iterate throw the list
   *[Symbol.iterator]() {
     let currentNode = this.head;
@@ -101,5 +180,5 @@ list.push(250);
 list.push(350);
 list.push(999);
 
-list.unshift(15);
+console.log(list.remove(2));
 console.log([...list]);
