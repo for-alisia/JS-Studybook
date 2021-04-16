@@ -21,7 +21,7 @@ stack2.unshift('cloned out wrinkle');
 stack2.shift(); // cloned out wrinkle
 stack2.shift(); // resized file
 
-// Lists implementation (more official) - O(1) - work with the beginning of the list
+// List's implementation (more official) - O(1) - work with the beginning of the list
 class NodeSt {
   constructor(val) {
     this.val = val;
