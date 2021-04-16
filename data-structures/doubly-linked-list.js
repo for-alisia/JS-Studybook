@@ -161,6 +161,21 @@ class DoblyLinkedList {
     return nodeToDelete;
   }
 
+  reverse() {
+    let currentNode = this.tail;
+
+    while (currentNode) {
+      const next = currentNode.next;
+      const prev = currentNode.prev;
+      currentNode.next = prev;
+      currentNode.prev = next;
+
+      currentNode = prev;
+    }
+
+    [this.tail, this.head] = [this.head, this.tail];
+  }
+
   // Iterate throw the list
   *[Symbol.iterator]() {
     let currentNode = this.head;
@@ -179,6 +194,5 @@ list.push(201);
 list.push(250);
 list.push(350);
 list.push(999);
-
-console.log(list.remove(2));
+list.reverse();
 console.log([...list]);
