@@ -1,3 +1,5 @@
+// Lists are linear
+
 // @ts-nocheck
 class NodeSL {
   constructor(val) {
