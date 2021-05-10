@@ -1,25 +1,23 @@
-// Very quick search
-// At most 2 children
-// Sorted: less to the left, greater to the right
+// @ts-nocheck
+/** Breads First Search and Depth First Search */
 
-// Insertion - O(log N) time complexity
-// Searching - O(log N) time complexity
-// Not guaranteed! - for example, one-side tree - O(N) in this case
+/** Here we use BST tree for adding an elements just as example */
 
-class NodeBST {
+class NodeTree {
   constructor(val) {
     this.val = val;
     this.left = null;
     this.right = null;
   }
 }
-class BST {
+
+class Tree {
   constructor() {
     this.root = null;
   }
 
   insert(val) {
-    const newNode = new NodeBST(val);
+    const newNode = new NodeTree(val);
     if (this.root === null) {
       this.root = newNode;
       return this;
@@ -66,14 +64,29 @@ class BST {
 
     return foundNode;
   }
+  // BFS method
+  BFS() {
+    let data = [];
+    let queue = [];
+    let node = this.root;
+
+    queue.push(node);
+
+    while (queue.length) {
+      node = queue.shift();
+      data.push(node.val);
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
+    }
+
+    return data;
+  }
 }
 
-let tree = new BST();
-tree.insert(10);
-tree.insert(15);
-tree.insert(5);
-tree.insert(8);
+let trees = new Tree();
+trees.insert(10);
+trees.insert(15);
+trees.insert(5);
+trees.insert(8);
 
-console.log(tree.find(8));
-
-//console.log(tree);
+console.log(trees.BFS());
