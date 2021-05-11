@@ -81,6 +81,35 @@ class Tree {
 
     return data;
   }
+
+  // DFS methods (different order of elements in output array)
+  DFSPreOrder() {
+    const data = [];
+    const traverse = (node) => {
+      data.push(node.val);
+
+      if (node.left) traverse(node.left);
+      if (node.right) traverse(node.right);
+    };
+
+    traverse(this.root);
+
+    return data;
+  }
+
+  DFSPostOrder() {
+    const data = [];
+    const traverse = (node) => {
+      if (node.left) traverse(node.left);
+      if (node.right) traverse(node.right);
+
+      data.push(node.val);
+    };
+
+    traverse(this.root);
+
+    return data;
+  }
 }
 
 let trees = new Tree();
@@ -89,4 +118,5 @@ trees.insert(15);
 trees.insert(5);
 trees.insert(8);
 
-console.log(trees.BFS());
+console.log(trees.DFSPreOrder());
+console.log(trees.DFSPostOrder());
