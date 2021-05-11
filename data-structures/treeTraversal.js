@@ -1,5 +1,8 @@
 // @ts-nocheck
 /** Breads First Search and Depth First Search */
+/** BFS has worse space complexity, the time complexity are the same
+ *  We are visiting each node once
+ */
 
 /** Here we use BST tree for adding an elements just as example */
 
@@ -83,6 +86,7 @@ class Tree {
   }
 
   // DFS methods (different order of elements in output array)
+  // Can be usefull to "export" the structure
   DFSPreOrder() {
     const data = [];
     const traverse = (node) => {
@@ -110,6 +114,20 @@ class Tree {
 
     return data;
   }
+
+  /** In this case the data will be sorted (with BST) */
+  DFSInOrder() {
+    const data = [];
+    const traverse = (node) => {
+      if (node.left) traverse(node.left);
+      data.push(node.val);
+      if (node.right) traverse(node.right);
+    };
+
+    traverse(this.root);
+
+    return data;
+  }
 }
 
 let trees = new Tree();
@@ -120,3 +138,4 @@ trees.insert(8);
 
 console.log(trees.DFSPreOrder());
 console.log(trees.DFSPostOrder());
+console.log(trees.DFSInOrder());
