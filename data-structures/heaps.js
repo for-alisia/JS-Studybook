@@ -18,9 +18,10 @@ class MaxBinaryHeap {
   extractMax() {
     const max = this.values[0];
     const end = this.values.pop();
-    this.values[0] = end;
-
-    this.bubbleDown();
+    if (this.values.length > 0) {
+      this.values[0] = end;
+      this.bubbleDown();
+    }
 
     return max;
   }
@@ -63,10 +64,14 @@ class MaxBinaryHeap {
         right = this.values[rightIdx];
 
         if ((swap === null && right > element) || (swap !== null && right > left)) {
+          swap = rightIdx;
         }
       }
 
       if (swap === null) break;
+
+      this.values[idx] = this.values[swap];
+      this.values[swap] = element;
     }
   }
 }
@@ -78,5 +83,6 @@ heap.insert(25);
 heap.insert(35);
 heap.insert(15);
 heap.insert(60);
+heap.extractMax();
 
 console.log(heap.values);
