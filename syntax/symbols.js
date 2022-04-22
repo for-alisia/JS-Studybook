@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * Symbol - promotive type in js. Doesn't convert to strings
+ * Symbol - primitive type in js. Doesn't convert to strings
  * Use if you need to protect some property in array
  * Don't iterate through for...in loop, but Object.assign will add symbol's properties
  */
