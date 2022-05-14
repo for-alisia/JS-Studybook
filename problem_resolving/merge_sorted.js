@@ -43,3 +43,27 @@ const result = mergeKLists([
 ]);
 
 console.log(result);
+
+function mergeTwoSorted(arr1, arr2) {
+  const merged = [];
+
+  if (!arr1.length) return arr2;
+  if (!arr2.length) return arr1;
+
+  let i = 0;
+  let j = 0;
+
+  while (arr1[i] || arr2[j]) {
+    if (!arr2[j] || arr1[i] < arr2[j]) {
+      merged.push(arr1[i]);
+      i++;
+    } else {
+      merged.push(arr2[j]);
+      j++;
+    }
+  }
+
+  return merged;
+}
+
+console.log(mergeTwoSorted([3, 7, 15, 32], [2, 65, 123, 133, 1456]));
