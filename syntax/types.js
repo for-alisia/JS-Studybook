@@ -1,4 +1,4 @@
-// JS is dynamicly weak typed language
+//? JS is dynamicly weak typed language
 // Passing by reference example
 const obj1 = { id: 1 };
 const obj2 = { id: 2 };
@@ -14,8 +14,8 @@ change(obj1, obj2);
 
 console.log(obj1.id); // 1
 
-// All types
-// Primiyive types - pass by value
+//? All types
+//! Primiyive types - pass by value
 typeof 5; // number
 typeof 'hello'; // string
 typeof true; // boolean
@@ -24,7 +24,7 @@ typeof null; // object - JS error, should be null
 typeof Symbol(); // Symbol
 typeof 11111111111n; // bigint (new type in JS)
 
-// Objects - pass by reference
+//! Objects - pass by reference
 typeof {}; // object
 typeof []; // object
 typeof function () {}; // function (in reality functions are objects)
@@ -38,7 +38,7 @@ var primNumber2 = 5;
 console.log(myNumber === primNumber); // false - does not compare by value
 console.log(primNumber === primNumber2); // true - primitives are compared by value
 
-// Type Coercions
+//? Type Coercions
 // Excellent table to play around https://dorey.github.io/JavaScript-Equality-Table/
 // Coersion only works with ==, not ===
 1 == '1'; // true - type coercion
@@ -57,17 +57,17 @@ false == {}; // false
 0 == {}; // false
 0 == null; // false !
 
-// Numbers
+//* Numbers
 var a = 1; // Number
 var b = 1.46; // Number
 
-// Operations with Numbers
+//* Operations with Numbers
 3 + 4; // 7
 3 * 4; // 12
 3 * 2 * 6; // 36
 17 % 5; // 2 - (5*3) + 2
 
-// Type coercion with Numbers
+//* Type coercion with Numbers
 30 + '30'; // '3030' - goes to a string (plus here stands for concatination)
 30 - '15'; // 15 - goes to a number ( - can't be used for a string)
 'hello' - 'all'; // goes to NaN (- only for numbers!)
@@ -84,3 +84,8 @@ Object.is(+0, -0); // false
 Object.is(NaN, NaN); // true
 NaN === NaN; // false
 // !!!
+
+//? From String to a Number
+var strToNumber = '3';
++strToNumber; // 3
+Number(strToNumber); // 3 - and it's not an object, it's number
