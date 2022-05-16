@@ -89,7 +89,7 @@ const getDataFromAPI = async () => {
 
 getDataFromAPI();
 
-// Promises and Event Loop
+//? Promises and Event Loop
 // With Promises Microtasks (Job) Queue was added and it has bigger priopity than Tasks (Callback) Queue
 console.log('Promises and Event Loop');
 setTimeout(() => console.log('SetTimeout with 0 - 1'), 0); // It would run after Promise.then
