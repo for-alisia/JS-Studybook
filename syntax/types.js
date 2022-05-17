@@ -66,6 +66,7 @@ var b = 1.46; // Number
 3 * 4; // 12
 3 * 2 * 6; // 36
 17 % 5; // 2 - (5*3) + 2
+2 ** 2; // 2 squared (exponential operator)
 
 //* Type coercion with Numbers
 30 + '30'; // '3030' - goes to a string (plus here stands for concatination)
@@ -89,3 +90,11 @@ NaN === NaN; // false
 var strToNumber = '3';
 +strToNumber; // 3
 Number(strToNumber); // 3 - and it's not an object, it's number
+
+// Strings
+
+// String Methods
+'Hello'.padEnd(10); // 'Hello     ' - total length will be 10, spaces will be added tp the end
+'Hello'.padStart(6); // '  Hello' - total length 6, spaces infront of the string
+'    some'.trimStart(); // 'some' - removes spaces before, returns new string
+'some     '.trimEnd(); // 'some' - removes spaces after, returns new string

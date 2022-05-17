@@ -45,6 +45,14 @@ let h5 = arr.every((el) => el > 5); // false
 let h6 = arr.includes(8); // true
 let summ = arr.reduce((acc, el) => acc + el, 0); // 33
 
+// Flat (ES2019)
+let arrFlat = [1, 2, [3, 4, 5]].flat(); // [1,2,3,4,5]
+let multiFlat = [1, 2, [3, 4, [5, 6]]].flat(2); // [1,2,3,4,5,6] - we can pass deep amount as a parameter - pass Infinity to cover all
+let cleanArr = [1, 2, , , , , 4, 5].flat(); // [1,2,4,5];
+
+// FlatMap
+let flatAndMapped = [1, 2, [3, 4, 5]].flatMap((item) => item + 1); // [2,3,'3,4,51'] - it will map and then flat
+
 // Clone the array
 
 let arr3 = [...arr];

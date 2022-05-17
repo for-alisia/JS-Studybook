@@ -1,7 +1,7 @@
 // @ts-nocheck
 const obj = {
   prop1: 'some prop 1',
-  prop2: 'sopme prop 2',
+  prop2: 'some prop 2',
 };
 
 Object.getOwnPropertyDescriptor(obj, 'prop1'); // {value: ..., writable: true, enumerable: true, configurable: true}
@@ -26,3 +26,14 @@ obj['prop1']; // 'some prop 1'
 
 // Clone an object
 let clone = Object.defineProperties({}, Object.getOwnPropertyDescriptors(obj));
+
+// Converting Objects to Arrays and vica versa
+const keys = Object.keys(obj); // ['prop1', 'prop2']
+const values = Object.values(obj); // ['some prop 1', 'some prop 2'];
+const entries = Object.entries(obj); // [[prop1, 'some prop 1'], [prop2, 'some prop 2]];
+const objFromEntries = Object.fromEntries(entries); // { prop1: 'some prop 1', prop2: 'some prop 2' }
+
+// For...in
+for (let key in obj) {
+  console.log(key); // prop1 -- prop2 (on each enumeration we will get next key)
+}
