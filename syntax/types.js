@@ -91,6 +91,13 @@ var strToNumber = '3';
 +strToNumber; // 3
 Number(strToNumber); // 3 - and it's not an object, it's number
 
+// BigInt
+typeof 1n; // bigint
+Number.MAX_SAFE_INTEGER; // The biggest safe number in JS (with number type) -
+// upper all calculations can be unaccurate - 9007199254740991
+9007199254741000 - 1; //! 9007199254741000
+9007199254741000n - 1n; //* 9007199254740999n
+
 // Strings
 
 // String Methods

@@ -152,3 +152,6 @@ const student = {
 // See examples above
 
 // 4. Arrow functions - lexically scoped this
+
+// Global this (added ES2020)
+globalThis; // window in browser and global in Node

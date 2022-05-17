@@ -37,3 +37,6 @@ const objFromEntries = Object.fromEntries(entries); // { prop1: 'some prop 1', p
 for (let key in obj) {
   console.log(key); // prop1 -- prop2 (on each enumeration we will get next key)
 }
+
+// Optional chaining
+obj.prop1?.really; // doesn't fail with Can't read canAccess of undefrined
