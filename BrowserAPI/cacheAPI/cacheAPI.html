@@ -2,7 +2,6 @@
 <html>
   <head>
     <title>Cache API Example</title>
-    <!-- TODO: Define the canvas style here -->
     <style type="text/css"></style>
     <link rel="stylesheet" href="../style.css" />
   </head>
@@ -48,7 +47,7 @@
               const request = await fetch(url);
               // Make a copy of the response since it can only be read once
               const clonedRequest = request.clone();
-              // TODO: Add the result to the cache
+              // Add the result to the cache
               cache.put(url, request);
               const data = await clonedRequest.json();
               console.log(data);
