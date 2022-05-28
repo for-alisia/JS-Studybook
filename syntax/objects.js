@@ -40,3 +40,9 @@ for (let key in obj) {
 
 // Optional chaining
 obj.prop1?.really; // doesn't fail with Can't read canAccess of undefrined
+//! Optional chaining works only with defined variables
+// Works to check access to method as well or to access var property
+// some.method?.() - valid (note, after method name, not before)
+// some?.[key] - valid
+
+notExisting?.some; // Reference error

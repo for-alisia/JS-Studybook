@@ -115,3 +115,11 @@ Number.MAX_SAFE_INTEGER; // The biggest safe number in JS (with number type) -
 'Hello'.padStart(6); // '  Hello' - total length 6, spaces infront of the string
 '    some'.trimStart(); // 'some' - removes spaces before, returns new string
 'some     '.trimEnd(); // 'some' - removes spaces after, returns new string
+
+// Booleans (type coercion)
+!!NaN; // false
+!!0; // false
+!!''; // fasle
+!!undefined; // false
+!!null; // false
+//* Other values go to true (for example, '0', {}, [] - are truthy values);

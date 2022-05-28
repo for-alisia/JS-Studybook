@@ -66,6 +66,11 @@ function Person(name, age) {
   this.age = age;
 }
 
+//!
+// Please note, that it's possible to add method under constructor function,
+// But this methods are not visible under ConstractorName.prototype object
+//!
+
 // Add method to a class
 Person.prototype.changeName = function (newName) {
   this.name = newName;
@@ -75,11 +80,47 @@ Person.prototype.changeName = function (newName) {
 const peter = new Person('Peter', 22);
 
 console.log(peter);
+peter instanceof Person; // true
+Person instanceof Function; // true
+Function instanceof Object; // true
+
+//** We can check if function was called as a constructor using new.target */
+// Example
+function Book(title, author) {
+  if (!new.target) {
+    // in new.target we have a link to a function itself or undefined
+    return new Book(title, author); // if developer forgot to call with new, fix it (not very good practice)
+  }
+
+  this.title = title;
+  this.author = author;
+}
 
 // Call methd on an instance
 peter.changeName('Peter Pen');
 
 console.log(peter);
+
+//! Usually constructor functions do not return
+// You can return any object, but with empty return or primitive, constructor returns created object
+
+function Example(name) {
+  this.name = name;
+
+  return { age: 11 }; // will be returned
+}
+
+function Weird(name) {
+  this.name = name;
+
+  return name; //! Will be returned created object, primitive will be ignored
+}
+
+//! Creating without ()
+function Bad() {
+  this.bad = true;
+}
+let bad = new Bad(); // it works, but it's an example of bad practice
 
 // Creating child class extending from Person
 function Developer(name, age, lang) {
