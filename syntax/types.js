@@ -91,6 +91,16 @@ var strToNumber = '3';
 +strToNumber; // 3
 Number(strToNumber); // 3 - and it's not an object, it's number
 
+// Convert to a number (type coercion)
+Number(undefined); // NaN
+Number(null); //! 0
+Number(true); // 1
+Number(false); // 0
+Number(''); // 0
+Number('34px'); // NaN
+Number('C25'); // NaN
+Number('32'); //32
+
 // BigInt
 typeof 1n; // bigint
 Number.MAX_SAFE_INTEGER; // The biggest safe number in JS (with number type) -
