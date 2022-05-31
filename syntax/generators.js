@@ -55,7 +55,7 @@ console.log([...generateCodes()]); //[3, 4, 5, 6, 9, 10, 11, 12, 15, 16, 17, 18]
 
 // 2 way dirrections
 function* moreThen(a) {
-  let result = yield a;
+  let result = yield a; // yields a outside, wait for next next(arg) call with arg -> this arg will go to result
   if (result > a) {
     yield true;
   } else yield false;
@@ -67,3 +67,18 @@ let generator1 = moreThen(5);
 console.log(generator1.next()); // 5
 console.log(generator1.next(7)); // true
 console.log(generator1.next()); //5
+
+// Errors
+function* withError() {
+  try {
+    let result = yield '2+2=?';
+
+    console.log(result);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+const errGenerator = withError();
+const question = errGenerator.next().value; // '2+2=?';
+errGenerator.throw(new Error('Too complicated question'));
