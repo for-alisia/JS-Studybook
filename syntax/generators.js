@@ -82,3 +82,37 @@ function* withError() {
 const errGenerator = withError();
 const question = errGenerator.next().value; // '2+2=?';
 errGenerator.throw(new Error('Too complicated question'));
+
+//? Async Iterators
+// Without generator
+// Locally keeping just ids => then iterate through object each time fetching the post
+const posts = {
+  ids: [1, 2, 3, 4, 5],
+  [Symbol.asyncIterator]() {
+    return {
+      ids: this.ids,
+      current: 0,
+
+      async next() {
+        const response = await fetch(
+          `https://jsonplaceholder.typicode.com/posts/${this.ids[this.current]}`
+        );
+        const post = await response.json();
+
+        if (this.current < this.ids.length) {
+          this.current++;
+
+          return { done: false, value: post };
+        } else {
+          return { done: true, value: post };
+        }
+      },
+    };
+  },
+};
+
+(async () => {
+  for await (let post of posts) {
+    console.log(post);
+  }
+})();
