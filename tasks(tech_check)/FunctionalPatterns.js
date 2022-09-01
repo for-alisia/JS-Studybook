@@ -1,3 +1,29 @@
+// Functions
+//? Creation - How we can create function in JS?
+// Function declaration
+// Function Expression
+// Arrow Function
+// new Function(arg1, arg2, arg3, bodyOfFn); - do not have access to local scopes, only to global one - no closures
+
+//? Built in function properties
+const some = function (a, b) {};
+
+console.log(some.name);
+console.log(some.length);
+// Consoles: some, 2
+// Can we change the name by setting it? - No
+// If we have internal name (for FE) what should be a name? - Internal one
+
+//? Rest operator
+function sum() {}
+
+console.log(sum(1, 2, 3, 4, 5));
+
+// ...args - rest operator - array
+// arguments - iterable object (do not exist in Arrow functions)
+// Re-write an example with arguments instead of args
+// Ask about difference of bind, call and apply
+
 // Topics to cover
 // Functional patterns - (immediate, callback, memoization, chaining, binding);
 
@@ -15,6 +41,18 @@ console.log(count()); // 0
 console.log(count()); // 1
 console.log(count()); // 3
 
+// What will be in a console
+function abc() {
+  let val = 11;
+
+  const myFunc = new Function('return val');
+
+  return myFunc;
+}
+
+abc()();
+// Error - function created via new Function have link only to global scope
+
 // Hoisting/closures
 // Task - what will we have in console in 1 sec
 // no matter where the variable defined - via closure function will get it
@@ -26,7 +64,7 @@ const callMe = () => {
 
 callMe();
 
-// Immediate invoked + only once called
+//? Immediate invoked + only once called
 // Only once called function
 // Task - to create function that will be called once
 
@@ -49,7 +87,7 @@ const inited = init(); // { init: true };
 const inited2 = init();
 console.log(inited === inited2);
 
-// Closures
+//? Closures
 // Classic army of Functions
 // Condition
 var array = [1, 2, 3, 4];
@@ -77,7 +115,7 @@ for (var i = 0; i < array.length; i++) {
   })(i);
 }
 
-// Curring
+//? Curring
 // Task - create a curring function from usual one
 function mltpG(a, b, c) {
   return a * b * c;
@@ -89,7 +127,7 @@ const mltpCurry = (a) => (b) => (c) => a * b * c;
 console.log(mltpG(2, 3, 4)); // 24
 console.log(mltpCurry(2)(3)(4)); // 24
 
-//Memoization (caching)
+//? Memoization (caching)
 // task - we have some hardCompute function that takes long time to run. Create caching version
 function hardCompute(n) {
   return n + 100; // Let's imagine it's a long operation here
@@ -112,25 +150,29 @@ const memoHardCompute = (n) => {
 const memo = (fn) => {
   const cache = {};
 
-  return (n) => {
+  return function (n) {
     if (cache[n]) {
       return cache[n];
     }
-
-    cache[n] = fn(n);
+    cache[n] = fn.call(this, n);
     return cache[n];
   };
 };
 
 const memoiedHardCompute = memo(hardCompute);
 
-// Binding (with call);
-// Task - create function that will return that output for any amount of argumnets.
-// Condition - to use arguments
-exclamation(1, 2, 3, 4, 5); // 1!, 2!, 3!, 4!, 5!
+// How we need to modify memo to make it work with methods? (fn.call(this, n) + returning function should not be an arrow to keep this)
+const myObj = {
+  some() {
+    return 3;
+  },
 
-function exclamation() {
-  return Array.prototype.map.call(arguments, (arg) => `${arg}!`);
-}
+  hard(n) {
+    return n + this.some();
+  },
+};
 
-console.log(exclamation(1, 2, 3, 4, 5));
+myObj.hard = memo(myObj.hard);
+
+console.log('---');
+console.log(myObj.hard(4));

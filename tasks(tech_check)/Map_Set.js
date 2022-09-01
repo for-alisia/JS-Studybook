@@ -8,6 +8,17 @@ function onlyUnique(arr) {
   return Array.from(new Set(arr));
 }
 
+// Create a map from array and then convert it back to an object
+const user = {
+  role: 'admin',
+  name: 'Alex',
+  age: 30,
+};
+
+// Solution
+const userMap = new Map(Object.entries(user));
+const newUserFromMap = Object.fromEntries(userMap);
+
 // NaN for Map as a key
 const myMap = new Map();
 

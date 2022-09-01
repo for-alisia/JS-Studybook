@@ -1,3 +1,5 @@
+const str = JSON.parse('/{}/')
+
 // JS has special constructor function for Errors
 const error = new Error('your message here');
 

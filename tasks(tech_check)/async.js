@@ -1,3 +1,10 @@
+// Event Loop
+setTimeout(() => console.log('1'), 0);
+Promise.resolve('2').then((res) => console.log(res));
+console.log('3');
+
+// Solution - 3, 2, 1
+
 // What will be the output
 const promise = new Promise((res) => res(2));
 promise
