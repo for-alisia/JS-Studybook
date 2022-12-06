@@ -45,4 +45,51 @@ const mergeSort = (arr) => {
   return merger(left, right);
 };
 
-console.log(mergeSort([1, 4, 7, 8, 7, 3, 11]));
+// console.log(mergeSort([1, 4, 7, 8, 7, 3, 11]));
+
+var mergeTwoLists = function (list1, list2) {
+  if (!list1.length) {
+    return list2;
+  }
+
+  if (!list2.length) {
+    return list1;
+  }
+
+  if (!list1.length && !list2.length) {
+    return [];
+  }
+
+  const result = [];
+
+  let x = 0;
+  let y = 0;
+
+  while (x < list1.length && y < list2.length) {
+    if (list1[x] < list2[y]) {
+      result.push(list1[x]);
+      x++;
+    } else if (list2[y] < list1[x]) {
+      result.push(list2[y]);
+      y++;
+    } else {
+      result.push(list1[x], list2[y]);
+      x++;
+      y++;
+    }
+  }
+
+  while (x < list1.length) {
+    result.push(list1[x]);
+    x++;
+  }
+
+  while (y < list2.length) {
+    result.push(list2[y]);
+    y++;
+  }
+
+  return result;
+};
+
+console.log(mergeTwoLists([1, 2, 4], [1, 3, 4]));

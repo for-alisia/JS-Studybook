@@ -14,6 +14,13 @@ console.log(some.length);
 // Can we change the name by setting it? - No
 // If we have internal name (for FE) what should be a name? - Internal one
 
+//? Default parameters (correct answer - 1, optional parameter and all parameters after optional are not considered as formal)
+function withDefaultParam(a, b = 10, c) {
+  console.log(withDefaultParam.length);
+}
+
+withDefaultParam(1, 2, 3);
+
 //? Rest operator
 function sum() {}
 
@@ -39,7 +46,7 @@ const count = (() => {
 
 console.log(count()); // 0
 console.log(count()); // 1
-console.log(count()); // 3
+console.log(count()); // 2
 
 // What will be in a console
 function abc() {
@@ -51,7 +58,7 @@ function abc() {
 }
 
 abc()();
-// Error - function created via new Function have link only to global scope
+// ReferenceError - function created via new Function have link only to global scope
 
 // Hoisting/closures
 // Task - what will we have in console in 1 sec
