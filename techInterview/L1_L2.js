@@ -21,6 +21,35 @@
  * CSS pre-processors - what do you know and what benefits we have
  * 
  * IV. Javascript
+ * 
+ * Data types and hoisting
+ */
+ let a = 1;
+
+ const myFunc = () => {
+   console.log(a);
+ 
+   let a = 2;
+ 
+   return a + 3;
+ };
+ 
+ myFunc();
+
+ // We'll get 1 in console
+
+console.log(3 > 2 > 1);
+// false -> (3>2) -> true > 1 -> false
+
+if (new Boolean(false)) {
+  console.log(1);
+}
+
+let name = 'bob';
+name[0] = 'B';
+console.log(name);
+
+/*
  * Closures
  */
 // Create count function that will return next number each call
@@ -39,6 +68,31 @@ console.log(count()); // 2
 /**
  * Async
  */
+
+ const promise = new Promise((res) => res(2));
+ promise
+   .then((v) => {
+     console.log(v);
+     return v * 2;
+   })
+   .then((v) => {
+     console.log(v);
+     return v * 2;
+   })
+   .finally((v) => {
+     console.log(v);
+     return v * 2;
+   })
+   .then((v) => {
+     console.log(v);
+   });
+// Solution: 2, 4, undefined,8
+
+// Event Loop
+setTimeout(() => console.log('1'), 0);
+Promise.resolve('2').then((res) => console.log(res));
+console.log('3');
+
 // Task - write code to fetch data from apis
 const urls = ['http://first/url', 'http://second/url', 'http://third/url'];
 
@@ -76,6 +130,13 @@ Promise.all(
  * cmparing classes in TypeScript and JavaScript
  * OOP principles
  */
+
+
+// 4 main OOP principles:
+// 1. Incapsulation (dividing code into blocks - classes that can communicate to each other)
+// 2. Abstraction (hiding the complexity - class provides an APIs that we can use without knowing under the hood implementation)
+// 3. Inheritance
+// 4. Polimorphism (ability to modify methods based on data)
 
 /**
  * Typescript
