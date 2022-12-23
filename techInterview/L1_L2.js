@@ -36,7 +36,7 @@
  
  myFunc();
 
- // We'll get 1 in console
+ // We'll get Reference Error in console
 
 console.log(3 > 2 > 1);
 // false -> (3>2) -> true > 1 -> false
