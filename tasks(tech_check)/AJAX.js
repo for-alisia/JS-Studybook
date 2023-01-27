@@ -141,12 +141,38 @@ xhr.onabort = function() {
 // response.body - ReadableStream, can read responce by parts
 //! Only one method to read a response can be called - we cannot read it twice!
 
-// Setting headers to the response
+// Setting headers and other params to the request
 let withHeaders = fetch('my/url', {
+  method: "POST",
   headers: {
-    Authentication: 'secret'
-  }
+    Authentication: 'secret',
+    "Content-Type": "text/plain;charset=UTF-8"
+  },
+  body: undefined,
 });
 
 // Getting response headers
 response.headers.get('Content-Type'); // It's a Map-like structure (but not exactly a Map)
+
+// Abort
+let controller = new AbortController();
+fetch(url, {
+  signal: controller.signal
+});
+
+// Download progress
+let response = await fetch('your/url');
+
+const reader = response.body.getReader();
+
+while(true) {
+  // done is true for the last chunk
+  // value is Uint8Array of the chunk bytes
+  const {done, value} = await reader.read();
+
+  if (done) {
+    break;
+  }
+
+  console.log(`Received ${value.length} bytes`)
+}
